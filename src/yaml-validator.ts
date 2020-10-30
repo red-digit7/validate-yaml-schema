@@ -25,11 +25,12 @@ export const validateYaml = async ( workspaceRoot: string): Promise<ValidationRe
         //TODO: improve this implementation - e.g. use the glob patterns from the yaml.schemas settings        
         const filePaths = await new Promise<string[]>((c,e) => {
             glob(
-                '**/*.yml', 
+                '.github/workflows/*.yml', 
                 {
                     cwd : workspaceRoot,
                     silent : true,
                     nodir : true,
+                    dot: true
                 },
                 (err, files) => { 
                     if (err) {
